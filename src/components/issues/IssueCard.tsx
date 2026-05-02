@@ -13,9 +13,12 @@ const issueBadgeStyles: Record<Issue['type'], string> = {
 
 export function IssueCard({ issue }: { issue: Issue }) {
   return (
-    <motion.div whileHover={{ scale: 1.02 }} transition={{ type: 'spring', stiffness: 280, damping: 20 }}>
-      <Card className="overflow-hidden rounded-2xl border-slate-200/80 bg-white shadow-md transition hover:shadow-lg">
-        <img src={issue.image} alt={issue.type} className="h-48 w-full object-cover" />
+    <motion.div whileHover={{ scale: 1.015, y: -2 }} transition={{ type: 'spring', stiffness: 260, damping: 22 }}>
+      <Card className="overflow-hidden rounded-2xl border-slate-200/70 bg-white shadow-md transition hover:shadow-xl">
+        <div className="relative">
+          <img src={issue.image} alt={issue.type} className="h-52 w-full object-cover" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/35 to-transparent" />
+        </div>
         <CardContent className="space-y-4 p-6">
           <div className="flex items-center justify-between gap-4">
             <Badge className={`rounded-lg border-0 ${issueBadgeStyles[issue.type]}`}>{issue.type}</Badge>
