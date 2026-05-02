@@ -53,7 +53,11 @@ export function useIssues() {
     ])
   }
 
+  const deleteIssue = (id: string) => {
+    setIssues((prev) => prev.filter((issue) => issue.id !== id))
+  }
+
   const getIssues = () => issues
 
-  return { addIssue, getIssues }
+  return { addIssue, deleteIssue, getIssues }
 }

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
-import { CircleCheck, ImagePlus, UploadCloud } from 'lucide-react'
+import { ImagePlus, UploadCloud } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import type { Issue, IssueType } from '../types/issue'
 import { Button } from '../components/ui/button'
@@ -45,16 +45,16 @@ export function ReportIssuePage({ onAddIssue }: { onAddIssue: (issue: Omit<Issue
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35 }}
-      className="mx-auto w-full max-w-6xl px-4 pb-16 pt-8 sm:px-6 lg:px-8"
+      className="mx-auto w-full max-w-6xl px-4 pb-12 pt-6 sm:px-6 sm:pb-16 sm:pt-8 lg:px-8"
     >
-      <div className="grid items-start gap-6 lg:grid-cols-[1.25fr_0.75fr]">
-        <Card className="w-full rounded-3xl border-red-100 bg-white shadow-lg">
-          <CardHeader className="space-y-2 p-6 sm:p-8">
+      <div className="grid items-start gap-6 xl:grid-cols-[1.2fr_0.8fr]">
+        <Card className="w-full rounded-3xl border-orange-200 bg-white shadow-lg">
+          <CardHeader className="space-y-2 p-5 sm:p-8">
             <CardTitle className="text-2xl font-bold text-slate-900">Report an Issue</CardTitle>
             <p className="text-sm text-slate-600">Share details with a clear photo so the team can resolve it quickly.</p>
           </CardHeader>
 
-          <CardContent className="space-y-6 p-6 pt-0 sm:p-8 sm:pt-0">
+          <CardContent className="space-y-6 p-5 pt-0 sm:p-8 sm:pt-0">
             <form
               className="space-y-6"
               onSubmit={(e) => {
@@ -74,7 +74,7 @@ export function ReportIssuePage({ onAddIssue }: { onAddIssue: (issue: Omit<Issue
                 <Label htmlFor="image-upload">Image Upload</Label>
                 <label
                   htmlFor="image-upload"
-                  className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-red-200 bg-gradient-to-br from-red-50 to-orange-50 p-8 text-center transition hover:border-red-300"
+                  className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-orange-300 bg-gradient-to-br from-orange-50 to-red-50 p-6 text-center transition hover:border-red-300 sm:p-8"
                   onDragOver={(e) => e.preventDefault()}
                   onDrop={(e) => {
                     e.preventDefault()
@@ -93,8 +93,8 @@ export function ReportIssuePage({ onAddIssue }: { onAddIssue: (issue: Omit<Issue
                   onChange={(e) => handleFile(e.target.files?.[0])}
                 />
                 {image ? (
-                  <div className="overflow-hidden rounded-2xl border border-red-100">
-                    <img src={image} alt="Issue preview" className="h-56 w-full object-cover" />
+                  <div className="overflow-hidden rounded-2xl border border-orange-200">
+                    <img src={image} alt="Issue preview" className="h-52 w-full object-cover sm:h-56" />
                   </div>
                 ) : (
                   <div className="flex items-center gap-2 text-xs text-slate-500">
@@ -108,10 +108,10 @@ export function ReportIssuePage({ onAddIssue }: { onAddIssue: (issue: Omit<Issue
                 <div className="space-y-2">
                   <Label htmlFor="type">Issue Type</Label>
                   <Select value={form.type} onValueChange={(value) => setForm((prev) => ({ ...prev, type: value as IssueType }))}>
-                    <SelectTrigger id="type" className="h-10 rounded-xl border-slate-200 focus:ring-red-200">
+                    <SelectTrigger id="type" className="h-10 rounded-xl border-orange-200 focus:ring-red-200">
                       <SelectValue placeholder="Select an issue type" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="border-orange-200">
                       {issueTypes.map((type) => (
                         <SelectItem key={type} value={type}>
                           {type}
@@ -128,7 +128,7 @@ export function ReportIssuePage({ onAddIssue }: { onAddIssue: (issue: Omit<Issue
                     placeholder="e.g. Science Block"
                     value={form.building}
                     onChange={(e) => setForm((prev) => ({ ...prev, building: e.target.value }))}
-                    className="h-10 rounded-xl border-slate-200 focus-visible:ring-red-200"
+                    className="h-10 rounded-xl border-orange-200 focus-visible:ring-red-200"
                   />
                 </div>
               </div>
@@ -140,7 +140,7 @@ export function ReportIssuePage({ onAddIssue }: { onAddIssue: (issue: Omit<Issue
                   placeholder="e.g. 3"
                   value={form.floor}
                   onChange={(e) => setForm((prev) => ({ ...prev, floor: e.target.value }))}
-                  className="h-10 rounded-xl border-slate-200 focus-visible:ring-red-200"
+                  className="h-10 rounded-xl border-orange-200 focus-visible:ring-red-200"
                 />
               </div>
 
@@ -152,36 +152,17 @@ export function ReportIssuePage({ onAddIssue }: { onAddIssue: (issue: Omit<Issue
                   rows={5}
                   value={form.description}
                   onChange={(e) => setForm((prev) => ({ ...prev, description: e.target.value }))}
-                  className="rounded-xl border-slate-200 focus-visible:ring-red-200"
+                  className="rounded-xl border-orange-200 focus-visible:ring-red-200"
                 />
               </div>
 
-              <Button type="submit" className="h-11 w-full rounded-xl bg-red-500 text-white hover:bg-red-600" disabled={!canSubmit}>
+              <Button type="submit" className="h-11 w-full rounded-xl bg-gradient-to-r from-red-500 to-orange-500 text-white hover:from-red-600 hover:to-orange-600" disabled={!canSubmit}>
                 Submit Issue
               </Button>
             </form>
           </CardContent>
         </Card>
 
-        <Card className="rounded-3xl border-orange-100 bg-white shadow-md lg:sticky lg:top-24">
-          <CardHeader className="p-6">
-            <CardTitle className="text-lg font-semibold text-slate-900">Submission Checklist</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3 px-6 pb-6 pt-0 text-sm text-slate-600">
-            <p className="flex items-start gap-2">
-              <CircleCheck className="mt-0.5 h-4 w-4 text-red-500" />
-              Include a clear photo where the issue is visible.
-            </p>
-            <p className="flex items-start gap-2">
-              <CircleCheck className="mt-0.5 h-4 w-4 text-red-500" />
-              Mention the exact building and floor to speed up fixing.
-            </p>
-            <p className="flex items-start gap-2">
-              <CircleCheck className="mt-0.5 h-4 w-4 text-red-500" />
-              Describe severity briefly so maintenance can prioritize.
-            </p>
-          </CardContent>
-        </Card>
       </div>
     </motion.main>
   )

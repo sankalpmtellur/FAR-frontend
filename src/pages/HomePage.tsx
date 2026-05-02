@@ -1,82 +1,48 @@
 import { motion } from 'framer-motion'
-import { CircleAlert, Clock3, ShieldCheck } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import logo from '../assets/logo.png'
 import type { Issue } from '../types/issue'
 import { IssueCard } from '../components/issues/IssueCard'
 import { Button } from '../components/ui/button'
-import { Card, CardContent } from '../components/ui/card'
 
-export function HomePage({ issues }: { issues: Issue[] }) {
+export function HomePage({ issues, onDeleteIssue }: { issues: Issue[]; onDeleteIssue: (id: string) => void }) {
   return (
     <motion.main
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35 }}
-      className="mx-auto w-full max-w-6xl space-y-10 px-4 pb-16 pt-8 sm:px-6 lg:px-8"
+      className="mx-auto w-full max-w-6xl space-y-8 px-4 pb-12 pt-6 sm:space-y-10 sm:px-6 sm:pb-16 sm:pt-8 lg:px-8"
     >
-      <section className="relative overflow-hidden rounded-3xl border border-red-100/80 bg-gradient-to-br from-white via-red-50 to-orange-50 p-8 shadow-lg sm:p-12">
-        <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-orange-200/30 blur-3xl" />
-        <div className="absolute -bottom-20 -left-10 h-52 w-52 rounded-full bg-red-200/40 blur-3xl" />
+      <section className="relative overflow-hidden rounded-3xl border border-orange-200/80 bg-gradient-to-br from-white via-orange-50 to-red-50 p-5 shadow-lg sm:p-8 lg:p-10">
+        <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-orange-300/30 blur-3xl" />
+        <div className="absolute -bottom-20 -left-10 h-52 w-52 rounded-full bg-red-300/35 blur-3xl" />
 
-        <div className="relative max-w-2xl space-y-5">
-          <p className="inline-flex rounded-full border border-red-200 bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-red-600">
-            Safer Campuses, Faster Fixes
-          </p>
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Report Campus Issues Easily</h1>
-          <p className="text-base text-slate-600 sm:text-lg">
-            Spot a crack, leak, or electrical problem? Upload it in seconds so the maintenance team can act quickly.
-          </p>
-          <Button asChild className="h-11 w-full rounded-xl bg-red-500 px-6 text-white hover:bg-red-600 sm:w-auto">
-            <Link to="/report">Report Issue</Link>
-          </Button>
+        <div className="relative grid items-center gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="max-w-2xl space-y-4 sm:space-y-5">
+            <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">Report Campus Issues Easily</h1>
+            <p className="text-sm text-slate-700 sm:text-base lg:text-lg">
+              Spot a crack, leak, or electrical problem and report it in seconds with structured details and photos.
+            </p>
+            <Button asChild className="h-11 w-full rounded-xl bg-gradient-to-r from-red-500 to-orange-500 px-6 text-white hover:from-red-600 hover:to-orange-600 sm:w-auto">
+              <Link to="/report">Report Issue</Link>
+            </Button>
+          </div>
+
+          <div className="mx-auto flex w-full max-w-xs items-center justify-center rounded-3xl border border-orange-200 bg-white/70 p-6 shadow-md">
+            <img src={logo} alt="Campus safety mark" className="h-36 w-auto object-contain sm:h-44" />
+          </div>
         </div>
-      </section>
-
-      <section className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <Card className="rounded-2xl border-red-100/70 bg-white shadow-md">
-          <CardContent className="flex items-center gap-3 p-4">
-            <span className="rounded-xl bg-red-100 p-2 text-red-600">
-              <CircleAlert className="h-4 w-4" />
-            </span>
-            <div>
-              <p className="text-xs uppercase tracking-wide text-slate-500">Active Reports</p>
-              <p className="text-xl font-semibold text-slate-900">{issues.length}</p>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="rounded-2xl border-orange-100/80 bg-white shadow-md">
-          <CardContent className="flex items-center gap-3 p-4">
-            <span className="rounded-xl bg-orange-100 p-2 text-orange-600">
-              <Clock3 className="h-4 w-4" />
-            </span>
-            <div>
-              <p className="text-xs uppercase tracking-wide text-slate-500">Recent Window</p>
-              <p className="text-xl font-semibold text-slate-900">Last 7 Days</p>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="rounded-2xl border-emerald-100/80 bg-white shadow-md">
-          <CardContent className="flex items-center gap-3 p-4">
-            <span className="rounded-xl bg-emerald-100 p-2 text-emerald-600">
-              <ShieldCheck className="h-4 w-4" />
-            </span>
-            <div>
-              <p className="text-xs uppercase tracking-wide text-slate-500">Goal</p>
-              <p className="text-xl font-semibold text-slate-900">Safer Campus</p>
-            </div>
-          </CardContent>
-        </Card>
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
           <h2 className="text-xl font-semibold text-slate-900">Recent Reports</h2>
-          <p className="text-sm text-slate-500">{issues.length} active issues</p>
+          <p className="text-sm text-slate-500">Tap any card to review, or delete when resolved.</p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           {issues.map((issue) => (
-            <IssueCard key={issue.id} issue={issue} />
+            <IssueCard key={issue.id} issue={issue} onDelete={onDeleteIssue} />
           ))}
         </div>
       </section>
