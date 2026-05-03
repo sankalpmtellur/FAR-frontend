@@ -14,13 +14,14 @@ const Dashboard: React.FC = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-slate-50 flex font-sans selection:bg-rose-100 selection:text-[#be0032]">
+    <div className="h-screen overflow-hidden bg-slate-50 flex font-sans selection:bg-rose-100 selection:text-[#be0032]">
       <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
 
-      <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
+      <main className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden lg:pl-72">
         <Navbar />
 
-        <section className="p-6 md:p-10 space-y-10 max-w-7xl mx-auto w-full overflow-y-auto">
+        <section className="flex-1 overflow-y-auto">
+          <div className="p-4 sm:p-6 md:p-8 lg:p-10 space-y-8 sm:space-y-10 max-w-7xl mx-auto w-full">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
               <h1 className="text-3xl font-black text-slate-900 tracking-tight">Dashboard</h1>
@@ -114,6 +115,7 @@ const Dashboard: React.FC = () => {
                 </tbody>
               </table>
             </div>
+          </div>
           </div>
         </section>
       </main>

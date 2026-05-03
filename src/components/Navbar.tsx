@@ -1,5 +1,5 @@
 import React from 'react'
-import { Bell, User } from 'lucide-react'
+import { User } from 'lucide-react'
 
 const Navbar: React.FC = () => {
   return (
@@ -7,11 +7,6 @@ const Navbar: React.FC = () => {
       <div />
 
       <div className="flex items-center gap-4">
-        <button className="p-2.5 text-slate-400 hover:bg-slate-100 rounded-full transition-colors relative">
-          <Bell size={20} />
-          <span className="absolute top-2 right-2 w-2 h-2 bg-[#be0032] rounded-full border-2 border-white" />
-        </button>
-        <div className="h-8 w-[1px] bg-slate-200 mx-2" />
         <div className="flex items-center gap-3">
           <div className="text-right hidden sm:block">
             <p className="text-sm font-bold text-slate-900 leading-none">Aryan Kumar</p>
