@@ -1,19 +1,31 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Launch from '../src/pages/Launch'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+
+import "@fontsource-variable/geist";
+import Launch from './pages/Launch';
+import Login from './pages/Login';
+
+const AnimatedRoutes = () => {
+    const location = useLocation();
+
+    return (
+        <AnimatePresence mode="wait">
+            <Routes location={location} key={location.pathname}>
+                <Route path="/" element={<Launch />} />
+                <Route path="/login" element={<Login />} />
+            </Routes>
+        </AnimatePresence>
+    );
+};
 
 function App() {
-  return (
-    <BrowserRouter>
-      <div className="relative min-h-screen overflow-x-hidden bg-[#fff7f2]">
-        <div className="pointer-events-none absolute inset-0 -z-0 bg-[radial-gradient(circle_at_top_left,rgba(249,115,22,0.18),transparent_30%),radial-gradient(circle_at_top_right,rgba(239,68,68,0.16),transparent_26%)]" />
-        <div className="relative z-10">
-          <Routes>
-            <Route path="/" element={<Launch />} />
-          </Routes>
-        </div>
-      </div>
-    </BrowserRouter>
-  )
+    return (
+        <Router>
+            <div className="antialiased selection:bg-rose-100 selection:text-[#be0032]">
+                <AnimatedRoutes />
+            </div>
+        </Router>
+    );
 }
 
-export default App
+export default App;
