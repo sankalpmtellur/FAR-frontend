@@ -1,9 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-
-import "@fontsource-variable/geist";
 import Launch from './pages/Launch';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 const AnimatedRoutes = () => {
     const location = useLocation();
@@ -13,6 +12,7 @@ const AnimatedRoutes = () => {
             <Routes location={location} key={location.pathname}>
                 <Route path="/" element={<Launch />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
             </Routes>
         </AnimatePresence>
     );

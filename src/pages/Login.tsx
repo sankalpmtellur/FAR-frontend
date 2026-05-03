@@ -99,10 +99,6 @@ const Login: React.FC = () => {
                     </div>
                 </div>
             </motion.div>
-
-            <p className="absolute bottom-8 text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em] z-10 px-6 text-center">
-                Secure Access • Rishihood University Maintenance
-            </p>
         </div>
     );
 };
