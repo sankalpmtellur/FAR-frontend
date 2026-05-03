@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, ArrowRight } from 'lucide-react';
-import logo from '../assets/logo.png';
+import { FcGoogle } from 'react-icons/fc';
 
 const Login: React.FC = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -28,22 +28,14 @@ const Login: React.FC = () => {
                 <div className="bg-white/80 backdrop-blur-xl p-8 md:p-10 rounded-[2.5rem] shadow-2xl shadow-slate-200/60 border border-white/50">
 
                     <div className="flex flex-col items-center mb-10">
-                        <Link to="/">
-                            <motion.img
-                                whileHover={{ rotate: -5 }}
-                                src={logo}
-                                alt="Logo"
-                                className="w-12 h-12 mb-4"
-                            />
-                        </Link>
-                        <h2 className="text-3xl font-black text-slate-900 tracking-tight">Welcome Back</h2>
+                        <h2 className="text-3xl font-black text-slate-900 tracking-tight">Welcome</h2>
                         <p className="text-slate-500 font-medium text-sm mt-1">Login to your campus account</p>
                     </div>
 
                     <form onSubmit={handleLogin} className="space-y-5">
                         <div className="space-y-2">
                             <label className="text-xs font-bold text-slate-600 uppercase tracking-wide ml-1">Username or Email</label>
-                            <div className="relative group border border-slate-100 rounded-2xl focus-within:border-[#be0032] transition-colors">
+                            <div className="relative group">
                                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#be0032] transition-colors">
                                     <Mail size={18} />
                                 </div>
@@ -58,7 +50,7 @@ const Login: React.FC = () => {
 
                         <div className="space-y-2">
                             <label className="text-xs font-bold text-slate-600 uppercase tracking-wide ml-1">Password</label>
-                            <div className="relative group border border-slate-100 rounded-2xl focus-within:border-[#be0032] transition-colors">
+                            <div className="relative group">
                                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#be0032] transition-colors">
                                     <Lock size={18} />
                                 </div>
@@ -88,6 +80,22 @@ const Login: React.FC = () => {
                             <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
                         </motion.button>
                     </form>
+
+                    <div className="relative flex items-center py-8">
+                        <div className="flex-grow border-t border-slate-100"></div>
+                        <span className="flex-shrink mx-4 text-[10px] font-black text-slate-300 uppercase tracking-widest">Or</span>
+                        <div className="flex-grow border-t border-slate-100"></div>
+                    </div>
+
+                    <motion.button
+                        whileHover={{ scale: 1.01, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                        type="button"
+                        className="w-full flex items-center justify-center gap-3 px-4 py-4 bg-white border border-slate-200 rounded-2xl font-bold text-slate-700 shadow-sm hover:shadow-md transition-all active:bg-slate-50"
+                    >
+                        <FcGoogle size={22} />
+                        <span className="text-sm font-bold">Continue with Google</span>
+                    </motion.button>
 
                     <div className="mt-8 text-center">
                         <p className="text-slate-500 text-sm font-medium">

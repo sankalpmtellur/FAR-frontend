@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
-import { Eye, EyeOff, Mail, Lock, User, ArrowRight } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, ArrowRight } from 'lucide-react';
 import { FcGoogle } from 'react-icons/fc';
 
 const Signup: React.FC = () => {
-    const [showPassword, setShowPassword] = useState(false);
+    const [showCreatePassword, setShowCreatePassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const navigate = useNavigate();
 
     const handleSignup = (e: React.FormEvent) => {
@@ -36,19 +37,6 @@ const Signup: React.FC = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                             <div className="space-y-1.5 md:col-span-2">
-                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Full Name</label>
-                                <div className="relative group">
-                                    <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#be0032] transition-colors" size={18} />
-                                    <input
-                                        type="text"
-                                        placeholder="Username"
-                                        className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-[#be0032]/10 focus:border-[#be0032] outline-none transition-all font-medium"
-                                        required
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="space-y-1.5 md:col-span-2">
                                 <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">University Email</label>
                                 <div className="relative group">
                                     <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#be0032] transition-colors" size={18} />
@@ -62,21 +50,41 @@ const Signup: React.FC = () => {
                             </div>
 
                             <div className="space-y-1.5 md:col-span-2">
-                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Password</label>
+                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Create Password</label>
                                 <div className="relative group">
                                     <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#be0032] transition-colors" size={18} />
                                     <input
-                                        type={showPassword ? "text" : "password"}
+                                        type={showCreatePassword ? "text" : "password"}
                                         placeholder="••••••••"
                                         className="w-full pl-12 pr-12 py-3.5 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-[#be0032]/10 focus:border-[#be0032] outline-none transition-all font-medium"
                                         required
                                     />
                                     <button
                                         type="button"
-                                        onClick={() => setShowPassword(!showPassword)}
+                                        onClick={() => setShowCreatePassword(!showCreatePassword)}
                                         className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
                                     >
-                                        {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                                        {showCreatePassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div className="space-y-1.5 md:col-span-2">
+                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1">Confirm Password</label>
+                                <div className="relative group">
+                                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#be0032] transition-colors" size={18} />
+                                    <input
+                                        type={showConfirmPassword ? "text" : "password"}
+                                        placeholder="••••••••"
+                                        className="w-full pl-12 pr-12 py-3.5 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-[#be0032]/10 focus:border-[#be0032] outline-none transition-all font-medium"
+                                        required
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                        className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                                    >
+                                        {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                                     </button>
                                 </div>
                             </div>
